@@ -1,0 +1,68 @@
+  **********************************************
+                    SYMFONY 
+  **********************************************        
+
+C'est un framework PHP (cadriciel), une boite à outils logicielles.
+CRUD (Creat, Read, Update, Delete) -> Symfony va nous permettre de faciliter le dévelopmment d'application en PHP 
+
+* Logiciel libre cré en 2009 par Fabien Potencier
+* v.5.2
+* Ensemble de composants (components) dont le coeur s'appelle "kernel" en anglais (noyau). On peut installer uniquement le kernel mais son fonctionne sera limité, il faudra installer d'autre composants.
+
+LES COMPOSANTS 
+- Doctrine : Gère la BDD / ORM (Objet relation manager) -> Dans l'appli symfony on ne connais que l'ORM
+- twig : va servir à faire des templates (gabarie) HTML 
+- Monolog : outil pour gérer les jounaux de logiciels (historique, journaux d'utilisation)
+-API : sert à créer une architecture pour que les développeurs front puissent accéder à ses données.
+
+On peut utiliser chacun de ses composants séparément
+Ce composants sont installé avec un outil PHP -> Composer 
+
+  **********************************************
+            Composer Require Doctrine 
+  **********************************************    
+
+Les répertoires :
+- bin : fichiers exécutables, des outils pour nous simplifier la vie (console, phpunit, etc) 
+- config : contient les fichiers de configurations de symfony et de ses composants
+- migrations : Doctrine va versionner l'évolution de la structure de la base de données (fichier php)
+- Public : dossier à rendre accessible au serveur HTTP
+- src : code de notre application
+- Template : Dossier contenant les gabarits/maquettes HTML
+- tests : l'endroit ou l'on écrira nos test*
+- translations : l'endroit pour traduire
+- var : c'est un dossier de fichier temporaire de symfony : le cache et les journaux
+- vendor : n'est pas lié a symfony mais à composer qui stocke à cette endroit tous les fichiers
+
+fichier racine :
+.env : fichier de configurations pour notre environnement à nous (connexion à la BDD)
+composer.json : Fichier utile à composer pour paramétrer ce paquet
+
+Flex :
+- /!\ Aucun rapport avec flex de CSS /!\
+- Flex dans le sens de symfony flex est un logiciel qui sert l'installation des composants.
+- Les developpeurs écrivent des recettes qui expliquent comment s'installent les composants de symfony.
+
+
+  **********************************************
+                    MVC 
+  **********************************************
+
+Une facon d'écrire du code (Patron de conception, ou Pattern) en séparant 3 éléments  :
+  - Modèle (model) : L'ensemble du code qui va intéragir avec la BDD. 
+  - Vue (view) : Tout ce qui concerne le rendu visuel.
+  - Contrôleur (controller) : Il fera le lien entre le modèle et la vue (au moyen d'une route), gère aussi l'authentification. 
+
+Intérêt :
+  1/ Façon d'organiser le code à plusieurs : (ex. Pour les Intégrateurs)
+  2/ Façon d'optimiser les performances : (ex. séparant le code qui requête la BDD du code qui fait le rendu visuel.)
+
+Une route :
+- Elle est légèrement différente d'une URL 
+- Morceau d'URL à laquelle va correspondre une action dans notre application 
+ex :
+- /articles/show: récupération de tous les articles
+- /articles/create : créer un article 
+- /articles/1/show : afficher l'article 1
+- /articles/1/update : modifier l'article 1
+- /articles/1/delete : supprimer l'article 1
