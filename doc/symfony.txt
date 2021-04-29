@@ -78,10 +78,49 @@ ex :
 - /articles/1/edit : modifier l'article 1
 - /articles/1/delete : supprimer l'article 1
 
-2/ utiliser un commentaire multiligne pour donner une @Route
-3/debug avec php bin/console debug:router 
-4/voir ArticlesController.php
+2/ Utiliser un commentaire multi-lignes pour donner une @Route
+3/Debug avec php bin/console debug:router 
+4/Voir ArticlesController.php
 
-ENTITÉE
-Une table sera représentée par une class dans Symfony.
-Les propriétés vont représentés les champs de la table.
+ENTITÉ :
+Une table sera représentée par une classe dans Symfony.
+Les propriétés vont représenter les champs de la table.
+
+Il y a 3 façons de créer une table :
+1/ Version compliquée, on se prend la tête : A RECHERCHE DANS LA DOC /!\
+        * Créer une nouvelle classe dans entity et l'annoter avec @ORM\Entity
+        * Dans cette classe on créera nos intitulés de colonnes que l'on définiera grâce aux annotations
+        * On fait un getter pour l'id et un getter et un setter pour les autres intitulés de colonnes 
+        * Aller dans la console et taper `php bin/console doctrine:schema:update --force`
+
+2/ Version moins compliquée mais pas propre quand même
+        * Dans la console on met : ` php bin/console make:entity`
+        * La console nous propose de créer les colonnes et de leur donner une valeur (pas besoin de l'index / ajouter automatiquement)
+        * On vérifie ce qu'il y a dans notre page qui a été créée 
+        * Aller dans la console et taper `php bin/console doctrine:schema:update --force`
+
+3/ Version moins compliquée et propre
+        * Dans la console on met : ` php bin/console make:entity`
+        * La console nous propose de créer les colonnes et de leur donner une valeur (pas besoin de l'index / ajouter automatiquement)
+        * On vérifie ce qu'il y a dans notre page qui a été créée 
+        * Aller dans la console et taper `php bin/console make:migration`
+        * Vérifier la classe créée
+        * Lancer dans la console : `php bin/console doctrine:migrations:migrate` 
+          ou pour les feignasses : `php bin/console d:m:m`
+
+REPOSITORY 
+À côté de l'entité est créé un REPOSITORY qui servira à contenir les fonctionsde recherche dans la base de données (BDD). 
+
+INJECTION DE DÉPENDANCES - DEPENDENCY INJECTION
+Lorsque l'on travaille dans le contrôleur, on aura besoin de nombreux outils externes : 
+- L'outil de recherche en BDD (en répository)
+- L'outil d'envoi de mails (mailer)
+- L'outil pour chiffré un mot de passe (hasher)
+- ...
+
+Dans Symfony, on accède facilement à ces instances grâce à l'injection de dépendances. Il suffit d'écrire le type et un nom de variable dans la méthode. Si symfony connait ce type, il l'instanciera et le fournira.
+Quand Symfony met en relation nos fonctions et ses méthodes, on parle d'autowiring.
+
+La liste complète des dépendances utilisable : 
+- 'PHP bin/console debug:autowiring'
+- ''

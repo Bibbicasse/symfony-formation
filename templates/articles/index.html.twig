@@ -30,7 +30,7 @@
             <td>{{ p.auteur }}</td>
             <td>{{ p.titre }}</td>
             <td>{{ p.description }}</td>
-            <td>{{ p.date_de_publication }}</td>
+            <td>{{ p.date_de_publication|date('Y-m-d H:i:s') }}</td>
             <td><a class="fas fa-eye text-decoration-none" href=""></a></td>
             <td><a class="fas fa-pencil-alt text-decoration-none text-success" href=""></a></td>
         </tr>
