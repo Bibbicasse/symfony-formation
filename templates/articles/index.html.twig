@@ -1,0 +1,45 @@
+{% extends 'base.html.twig'%}
+
+{% block title %}Bidulle{% endblock %}
+
+{% block body %}
+
+<div class="bg-light">
+    <h1 class="display-3 p-5">La liste des articles</h1>
+    <p class="lead px-5 pb-3">html.twig étendu de base.html.twig</p>
+</div>
+
+<table class="table table-stripped container">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Auteur</th>
+            <th scope="col">Titre</th>
+            <th scope="col">Description</th>
+            <th scope="col">Date de publication</th>
+            <th scope="col">Voir</th>
+            <th scope="col">Éditer</th>
+
+            <!-- raccourci selectionner tout les th ctrl + maj + L -->
+        </tr>
+    </thead>
+    <tbody>
+        {% for p in posts %}
+        <tr>
+            <td>{{ p.id }}</td>
+            <td>{{ p.auteur }}</td>
+            <td>{{ p.titre }}</td>
+            <td>{{ p.description }}</td>
+            <td>{{ p.date_de_publication }}</td>
+            <td><a class="fas fa-eye text-decoration-none" href=""></a></td>
+            <td><a class="fas fa-pencil-alt text-decoration-none text-success" href=""></a></td>
+        </tr>
+        {% endfor %}
+
+        <!-- ref for twig : https://twig.symfony.com/doc/3.x/tags/for.html -->
+
+    </tbody>
+
+</table>
+
+{% endblock %}

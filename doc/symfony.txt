@@ -1,6 +1,9 @@
   **********************************************
                     SYMFONY 
   **********************************************        
+INSTALLATION SYMFONY  
+composer create-project symfony/website-skeleton mon_nom_du_projet
+
 
 C'est un framework PHP (cadriciel), une boite à outils logicielles.
 CRUD (Creat, Read, Update, Delete) -> Symfony va nous permettre de faciliter le dévelopmment d'application en PHP 
@@ -16,17 +19,22 @@ LES COMPOSANTS
 -API : sert à créer une architecture pour que les développeurs front puissent accéder à ses données.
 
 On peut utiliser chacun de ses composants séparément
-Ce composants sont installé avec un outil PHP -> Composer 
+
+COMPOSER
+Ces composants sont installé avec un outil PHP -> Composer
+Composer s'utilise dans la console/terminal (il faut au préable installer une console et composer) 
 
   **********************************************
             Composer Require Doctrine 
-  **********************************************    
+  **********************************************  
+Tout programme qui respecte les conventions (PSR-4 peut être chargé avec composer)
 
 Les répertoires :
 - bin : fichiers exécutables, des outils pour nous simplifier la vie (console, phpunit, etc) 
 - config : contient les fichiers de configurations de symfony et de ses composants
+- doc : contient tous les fichiers .txt avec nos notes personnelles
 - migrations : Doctrine va versionner l'évolution de la structure de la base de données (fichier php)
-- Public : dossier à rendre accessible au serveur HTTP
+- public : dossier à rendre accessible au serveur HTTP
 - src : code de notre application
 - Template : Dossier contenant les gabarits/maquettes HTML
 - tests : l'endroit ou l'on écrira nos test*
@@ -44,25 +52,36 @@ Flex :
 - Les developpeurs écrivent des recettes qui expliquent comment s'installent les composants de symfony.
 
 
+
   **********************************************
-                    MVC 
+              ARCHITECTURE MVC 
   **********************************************
 
 Une facon d'écrire du code (Patron de conception, ou Pattern) en séparant 3 éléments  :
   - Modèle (model) : L'ensemble du code qui va intéragir avec la BDD. 
   - Vue (view) : Tout ce qui concerne le rendu visuel.
-  - Contrôleur (controller) : Il fera le lien entre le modèle et la vue (au moyen d'une route), gère aussi l'authentification. 
+  - Contrôleur (controller) : Il fera le lien entre le modèle et la vue (au moyen d'une route), gère aussi l'authentification des droits de modification. 
 
 Intérêt :
   1/ Façon d'organiser le code à plusieurs : (ex. Pour les Intégrateurs)
   2/ Façon d'optimiser les performances : (ex. séparant le code qui requête la BDD du code qui fait le rendu visuel.)
 
+  d'autre architecture existent (ADR -> action domaine Responder, DDD -> Domain Driven Design, etc)
+
 Une route :
 - Elle est légèrement différente d'une URL 
 - Morceau d'URL à laquelle va correspondre une action dans notre application 
 ex :
-- /articles/show: récupération de tous les articles
-- /articles/create : créer un article 
-- /articles/1/show : afficher l'article 1
-- /articles/1/update : modifier l'article 1
+- /articles/: récupération de tous les articles
+- /articles/new : créer un article 
+- /articles/1 : afficher l'article 1
+- /articles/1/edit : modifier l'article 1
 - /articles/1/delete : supprimer l'article 1
+
+2/ utiliser un commentaire multiligne pour donner une @Route
+3/debug avec php bin/console debug:router 
+4/voir ArticlesController.php
+
+ENTITÉE
+Une table sera représentée par une class dans Symfony.
+Les propriétés vont représentés les champs de la table.
