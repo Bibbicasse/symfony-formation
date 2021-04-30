@@ -14,11 +14,11 @@ class ArticlesController extends AbstractController
  /**
  *  @Route("/articles/", name="articles_index")
  */
-    public function index(ArticlesRepository $articlesRepository, Request $truc)
+    public function index(ArticlesRepository $articlesRepository)
     { 
         $articles = $articlesRepository->findAll();
         // $articles = $articlesRepository->findby(array(), array('id => 'DESC'), 2);
-        dump($truc);
+        // dump($truc);
         // dump($articles);
         return $this->render('articles/index.html.twig', [
             "posts" => $articles
